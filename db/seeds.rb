@@ -19,7 +19,7 @@ Subscription.create(subscriber: chris, subscribed: papijuice)
 Subscription.create(subscriber: chris, subscribed: oscar)
 Subscription.create(subscriber: oscar, subscribed: chris)
 
-fruitypapi = Event.create(name: "Fruity Papi", date: "12-02-92", description: "Such a good time", address: "Nowadays")
+fruitypapi = Event.create(name: "Fruity Papi", date: "12-02-92", description: "Such a good time", address: "Nowadays", category: "music")
 
 oscarpapi = Presence.create(entity: oscar, event: fruitypapi, presence_type: "organizer")
 chrispapi = Presence.create(entity: chris, event: fruitypapi, presence_type: "attendee")
