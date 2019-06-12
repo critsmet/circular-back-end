@@ -21,4 +21,12 @@ class Event < ApplicationRecord
     end
   end
 
+  def attendees
+    self.presences.filter do |presence|
+      presence.presence_type === "attendee"
+    end.map do |presence|
+      presence.entity
+    end
+  end
+
 end
