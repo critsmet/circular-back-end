@@ -6,8 +6,7 @@ class EntitiesController < ApplicationController
   end
 
   def create
-    @entity = Entity.new(entity_params)
-    @entity.save
+    @entity = Entity.create(entity_params)
     render_entity
   end
 
