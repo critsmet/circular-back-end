@@ -1,8 +1,18 @@
 class Event < ApplicationRecord
   has_many :presences
   has_many :entities, through: :presences
+  scope :this_week, lambda {|start_date, end_date| where(" date >= ? AND date <= ?", start_date, end_date)}
 
-  enum category: { music: 'music', art: 'art', film: 'film', performance: 'performance', food: 'food', protest: 'protest', class: 'class', workshop:'workshop', gathering: 'gathering'}
+  enum category: { music: 'music', art: 'art', film: 'film', performance: 'performance', food: 'food', protest: 'protest', class: 'class', workshop:'workshop', gathering: 'gathering'}, _prefix: :category_type
+  # we need to add a prefix because enums create scopes that compete with other methods??
+  # https://naturaily.com/blog/ruby-on-rails-enum
+
+  def events_by_date(date)
+    parsed_date = DateTime.parse(date)
+    self.all select do |event|
+      event.date.strftime("%Y%m%d") == parsed_date.strftime("%Y%m%d")
+    end
+  end
 
   def venues
     #should I use filter or where?

@@ -1,18 +1,28 @@
 class EventSerializer
   include FastJsonapi::ObjectSerializer
-
-  attributes :name, :date, :description, :address, :category
-
-  attribute :venues do |event|
-    PublicEntitySerializer.new(event.venues)
+  attributes :name, :date, :description, :category, :image_url, :tags
+  attribute :location do |event|
+    written_location = event.location
+    if written_location
+      written_location
+    else
+      event.venues.map do |venue|
+        venue.name || venue.handle
+      end.join(", ")
+    end
   end
 
-  attribute :organizers do |event|
-    PublicEntitySerializer.new(event.organizers)
+  attribute :todays_date do |event|
+    DateTime.now
   end
-
-  attribute :attendees do |event|
-    PublicEntitySerializer.new(event.attendees)
+  #a location of the event should be visible.
+  link :organizers do |event|
+    "http://localhost:3000/events/#{event.id}/organizers"
   end
-
+  link :venues do |event|
+    "http://localhost:3000/events/#{event.id}/venues"
+  end
+  link :attendees do |event|
+    "http://localhost:3000/events/#{event.id}/attendees"
+  end
 end

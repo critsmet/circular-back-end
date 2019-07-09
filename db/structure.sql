@@ -91,7 +91,8 @@ CREATE TABLE public.entities (
     confirm_token character varying DEFAULT ''::character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    entity_type public.type_of_entity
+    entity_type public.type_of_entity,
+    address character varying
 );
 
 
@@ -123,10 +124,12 @@ CREATE TABLE public.events (
     name character varying,
     date timestamp without time zone,
     description character varying,
-    address character varying,
+    location character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    category public.event_category
+    category public.event_category,
+    image_url character varying,
+    tags character varying
 );
 
 
@@ -328,13 +331,6 @@ CREATE INDEX index_entities_on_name ON public.entities USING btree (name);
 
 
 --
--- Name: index_events_on_address; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_events_on_address ON public.events USING btree (address);
-
-
---
 -- Name: index_events_on_category; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -346,6 +342,13 @@ CREATE INDEX index_events_on_category ON public.events USING btree (category);
 --
 
 CREATE INDEX index_events_on_date ON public.events USING btree (date);
+
+
+--
+-- Name: index_events_on_location; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_events_on_location ON public.events USING btree (location);
 
 
 --
@@ -419,6 +422,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190508235419'),
 ('20190514095639'),
 ('20190523095347'),
-('20190523104637');
+('20190523104637'),
+('20190617172744'),
+('20190709161132'),
+('20190709174902'),
+('20190709175249');
 
 
