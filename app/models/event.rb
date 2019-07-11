@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   has_many :presences
   has_many :entities, through: :presences
-  scope :this_week, lambda {|start_date, end_date| where(" date >= ? AND date <= ?", start_date, end_date)}
+  scope :by_date, lambda {|date| where(" date >= ? AND date <= ?", date, date.end_of_day)}
 
   enum category: { music: 'music', art: 'art', film: 'film', performance: 'performance', food: 'food', protest: 'protest', class: 'class', workshop:'workshop', gathering: 'gathering'}, _prefix: :category_type
   # we need to add a prefix because enums create scopes that compete with other methods??
