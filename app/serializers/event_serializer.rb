@@ -1,6 +1,11 @@
 class EventSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name, :date, :description, :category, :image_url, :tags
+  attributes :name, :description, :category, :image_url, :tags
+
+  attribute :time do |event|
+    event.date.localtime.strftime("%H:%M")
+  end
+
   attribute :location do |event|
     written_location = event.location
     if written_location
