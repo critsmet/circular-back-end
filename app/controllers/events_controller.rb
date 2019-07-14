@@ -21,4 +21,9 @@ class EventsController < ApplicationController
     }
     render json: event_date_hash
   end
+
+  def show
+    event = Event.find(params[:id])
+    render json: EventSerializer.new(event)
+  end
 end
