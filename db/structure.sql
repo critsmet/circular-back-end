@@ -92,7 +92,8 @@ CREATE TABLE public.entities (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     entity_type public.type_of_entity,
-    address character varying
+    address character varying,
+    image_url character varying
 );
 
 
@@ -129,7 +130,8 @@ CREATE TABLE public.events (
     updated_at timestamp without time zone NOT NULL,
     category public.event_category,
     image_url character varying,
-    tags character varying
+    tags character varying,
+    "self_destruct?" boolean
 );
 
 
@@ -426,6 +428,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190617172744'),
 ('20190709161132'),
 ('20190709174902'),
-('20190709175249');
+('20190709175249'),
+('20190714163605'),
+('20190802145443');
 
 

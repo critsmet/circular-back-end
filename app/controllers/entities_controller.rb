@@ -1,8 +1,14 @@
 class EntitiesController < ApplicationController
 
+  #combine the show and show_public methods togeher
   def show
     @entity = Entity.find(params[:id])
     render_entity
+  end
+
+  def show_public
+    @entity = Entity.find(params[:id])
+    render_public
   end
 
   def create
@@ -21,6 +27,10 @@ class EntitiesController < ApplicationController
 
   def render_entity
     render json: PrivateEntitySerializer.new(@entity)
+  end
+
+  def render_public
+    render json: PublicEntitySerializer.new(@entity)
   end
 
   def login_params
