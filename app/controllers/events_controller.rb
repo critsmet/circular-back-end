@@ -26,4 +26,15 @@ class EventsController < ApplicationController
     event = Event.find(params[:id])
     render json: EventSerializer.new(event)
   end
+
+  def search
+    if params[:filter] == "name"
+      events = Event.where("lower(#{params[:filter]}) like ?", "%#{params[:param].downcase}%")
+      render json: EventSerializer.new(events)
+    else
+      events = Event.where("#{params[:filter]}": params[:param].downcase)
+      render json: EventSerializer.new(events)
+    end
+  end
+
 end

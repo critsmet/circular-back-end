@@ -1,6 +1,10 @@
 class EntitySerializer
   include FastJsonapi::ObjectSerializer
   attributes :handle, :name, :entity_type, :image_url, :confirmed
+  # I would have preferred to use FastJson's include feature for the relationships below
+  # But it was not giving the desired result
+  # Ended up using the instane methods and passing them to the correct EventSerializer
+  # Is there a better way to do this?
   attribute :organizing_events do |entity|
     EventSerializer.new(entity.organizing_events)
   end
