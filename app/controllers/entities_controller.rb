@@ -6,11 +6,6 @@ class EntitiesController < ApplicationController
     render_entity
   end
 
-  def show_public
-    @entity = Entity.find(params[:id])
-    render_public
-  end
-
   def create
     @entity = Entity.create(entity_params)
     render_entity
@@ -26,11 +21,7 @@ class EntitiesController < ApplicationController
   private
 
   def render_entity
-    render json: PrivateEntitySerializer.new(@entity)
-  end
-
-  def render_public
-    render json: PublicEntitySerializer.new(@entity)
+    render json: EntitySerializer.new(@entity)
   end
 
   def login_params
