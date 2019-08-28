@@ -11,10 +11,6 @@ class Event < ApplicationRecord
   has_many :venue_presences, -> {as_venue}, class_name: 'Presence'
   has_many :venues, source: :entity, through: :venue_presences
 
-  validates :handle, presence: true, uniqueness: true
-  validates :entity_type, presence: true
-  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
-
   scope :by_date, lambda {|date| where(" date >= ? AND date <= ?", date, date.end_of_day)}
 
   enum category: { music: 'music', art: 'art', film: 'film', performance: 'performance', food: 'food', protest: 'protest', class: 'class', workshop:'workshop', gathering: 'gathering'}, _prefix: :category_type
