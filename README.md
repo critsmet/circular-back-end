@@ -1,24 +1,7 @@
-# README
+# Circular: The Back End
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Circular is still in the initial stages of ideation/first-draft development by Chris Metzger and [Jesse Hlebo](jessehlebo.com). Check out the screenshot below for a demo, and [this](https://github.com/critsmet/circular-front-end) link to the backend repository. Hop around the branches to see features that are still being built and have not been merged to master. 
 
-Things you may want to cover:
+![](https://res.cloudinary.com/apostrophe/image/upload/v1569949616/CircularDemo.gif)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Circular's backend was was boostrapped with [rails](https://github.com/rails/rails)
